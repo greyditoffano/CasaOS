@@ -349,26 +349,6 @@ Get_Port() {
     fi
 }
 
-# Update package
-
-Update_Package_Resource() {
-    Show 2 "Updating package manager..."
-    GreyStart
-    if [ -x "$(command -v apk)" ]; then
-        ${sudo_cmd} apk update
-    elif [ -x "$(command -v apt-get)" ]; then
-        ${sudo_cmd} apt-get update -qq
-    elif [ -x "$(command -v dnf)" ]; then
-        ${sudo_cmd} dnf check-update
-    elif [ -x "$(command -v zypper)" ]; then
-        ${sudo_cmd} zypper update
-    elif [ -x "$(command -v yum)" ]; then
-        ${sudo_cmd} yum update
-    fi
-    ColorReset
-    Show 0 "Update package manager complete."
-}
-
 # Install depends package
 Install_Depends() {
     for ((i = 0; i < ${#CASA_DEPANDS_COMMAND[@]}; i++)); do
